@@ -8,10 +8,12 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.selenium.pages.GooglePage;
+import qa.selenium.pages.GoogleResultPage;
 
 public class GoogleTest {
     WebDriver driver;
     GooglePage googlePage;
+
     @BeforeMethod
     public void setUp() {
         WebDriverManager.chromedriver().setup();
@@ -20,18 +22,25 @@ public class GoogleTest {
 
         googlePage = new GooglePage(driver);
     }
+
     @Test
     public void googleSearchTest() {
+
         googlePage.open();
-        googlePage.search("Selenium WebDriver");
+
+        GoogleResultPage resultPage =
+                googlePage.searchFor("Selenium WebDriver");
 
         Assert.assertTrue(
-                googlePage.getTitle().contains("Selenium"),
-                "Title does NOT contain 'Selenium'"
+                resultPage.areResultsDisplayed(),
+                "Result are NOT displayed"
         );
     }
+
     @AfterMethod
     public void tearDown() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
