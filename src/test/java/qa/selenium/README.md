@@ -10,8 +10,13 @@ Tech Stack:
 - Extent Report;
 - Git & GitHub;
 
+Test Scenarios:
 
-Author
+- Google search functionality validation;
+- Page navigation and result verification;
+- Basic UI automation test examples;
+
+Author:
 
 Dusan Milosavljevic
 QA Student - Software Testing and Quality Assurance.
